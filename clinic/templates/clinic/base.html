@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>OneClickVitals</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/clinic.css' %}">
+        <link href="<link href='http://fonts.googleapis.com/css?family=Marmelad' rel='stylesheet' type='text/css'>" rel="stylesheet" type="text/css">
+    </head>
+ 
+    <body>
+        <div class="page-header">
+            <h1><a href="/"> Welcome to OneClickVitals</a></h1>
+            
+        </div>
+            {% if user.is_authenticated %}
+            <p class="top-menu">Hello, {{ user.username }}<small>(<a href="{% url 'django.contrib.auth.views.logout' %}">Log out</a>)</small></p>
+           <div class="content">
+                <div class="row">
+                    <div class="col-md-8">
+                        {% block content %}  
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+
+            {% else %}
+        <a href="{% url 'django.contrib.auth.views.login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+            {% endif %}
+            
+
+    </body>
+</html>
